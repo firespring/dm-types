@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.name          = 'dm-types'
   gem.require_paths = %w(lib)
   gem.version       = DataMapper::Types::VERSION
+  gem.required_ruby_version = '>= 2.7.8'
 
   gem.add_runtime_dependency('bcrypt',      '~> 3.0')
   gem.add_runtime_dependency('dm-core',     '~> 1.3.0.beta')
