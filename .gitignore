@@ -33,7 +33,7 @@ measurements
 
 ## BUNDLER
 .bundle
-Gemfile.lock
+Gemfile.*
 
 ## PROJECT::SPECIFIC
 spec/db/
