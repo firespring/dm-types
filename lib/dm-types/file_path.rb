@@ -19,7 +19,6 @@ module DataMapper
       def typecast(value)
         load(value)
       end
-
     end # class FilePath
   end # class Property
 end # module DataMapper

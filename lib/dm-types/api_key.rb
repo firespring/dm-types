@@ -23,7 +23,7 @@ module DataMapper
         sha1 = Digest::SHA1.new
 
         PADDING.times { sha1 << rand(256).chr }
-        return sha1.hexdigest
+        sha1.hexdigest
       end
     end
   end

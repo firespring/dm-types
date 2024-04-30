@@ -16,7 +16,6 @@ module DataMapper
       def typecast(value)
         load(value)
       end
-
     end
   end
 end

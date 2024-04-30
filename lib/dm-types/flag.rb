@@ -59,7 +59,6 @@ module DataMapper
           else [value.to_sym]
         end
       end
-
     end # class Flag
   end # class Property
 end # module DataMapper

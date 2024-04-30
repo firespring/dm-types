@@ -21,13 +21,14 @@ module DataMapper
         # @api private
         def _destroy(execute_hooks = true)
           return false unless saved?
+
           if execute_hooks
             paranoid_destroy
           else
             super
           end
         end
-      end # module Base
+      end
 
       module ClassMethods
         def inherited(model)
@@ -49,7 +50,7 @@ module DataMapper
         def set_paranoid_property(name, &block)
           paranoid_properties[name] = block
         end
-      end # module ClassMethods
-    end # module Paranoid
-  end # module Types
-end # module DataMapper
+      end
+    end
+  end
+end

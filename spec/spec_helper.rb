@@ -5,7 +5,7 @@ require 'dm-types'
 require 'dm-migrations'
 require 'dm-validations'
 
-Dir["#{Pathname(__FILE__).dirname.expand_path}/shared/*.rb"].each { |file| require file }
+Dir["#{Pathname(__FILE__).dirname.expand_path}/shared/*.rb"].sort.each { |file| require file }
 
 DataMapper::Spec.setup
 
@@ -14,14 +14,14 @@ RSpec.configure do |config|
 end
 
 DEPENDENCIES = {
-  'bcrypt' => 'bcrypt-ruby',
-}
+  'bcrypt' => 'bcrypt-ruby'
+}.freeze
 
 def try_spec
   begin
     yield
   rescue LoadError => error
-    raise error unless lib = error.message.match(/\Ano such file to load -- (.+)\z/)[1]
+    raise error unless (lib = error.message.match(/\Ano such file to load -- (.+)\z/)[1])
 
     gem_location = DEPENDENCIES[lib] || raise("Unknown lib #{lib}")
 

@@ -59,7 +59,6 @@ module DataMapper
         return if value.nil?
         load(value)
       end
-
     end
   end
 end
