@@ -45,21 +45,21 @@ describe DataMapper::Property::DirtyMinder, 'set!' do
 
   context 'when setting nil' do
     let(:value) { nil }
-    it_should_behave_like 'a non hooked value'
+    it_behaves_like 'a non hooked value'
   end
 
   context 'when setting a String' do
     let(:value) { 'The fred' }
-    it_should_behave_like 'a non hooked value'
+    it_behaves_like 'a non hooked value'
   end
 
   context 'when setting an Array' do
     let(:value) { ['The fred'] }
-    it_should_behave_like 'a hooked value'
+    it_behaves_like 'a hooked value'
   end
 
   context 'when setting a Hash' do
     let(:value) { {'The' => 'fred'} }
-    it_should_behave_like 'a hooked value'
+    it_behaves_like 'a hooked value'
   end
 end

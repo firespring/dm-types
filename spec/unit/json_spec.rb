@@ -77,7 +77,7 @@ try_spec do
           @result = @property.typecast(@input)
         end
 
-        it_should_behave_like 'identity function'
+        it_behaves_like 'identity function'
       end
 
       describe 'when given instance of an Array' do
@@ -87,7 +87,7 @@ try_spec do
           @result = @property.typecast(@input)
         end
 
-        it_should_behave_like 'identity function'
+        it_behaves_like 'identity function'
       end
 
       describe 'when given nil' do
@@ -97,7 +97,7 @@ try_spec do
           @result = @property.typecast(@input)
         end
 
-        it_should_behave_like 'identity function'
+        it_behaves_like 'identity function'
       end
 
       describe 'when given JSON encoded value' do

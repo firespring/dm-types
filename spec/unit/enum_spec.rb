@@ -11,7 +11,7 @@ try_spec do
       @property_klass = DataMapper::Property::Enum
     end
 
-    it_should_behave_like "A property with flags"
+    it_behaves_like 'A property with flags'
 
     describe '.dump' do
       before do
