@@ -1,5 +1,5 @@
-describe "identity function", :shared => true do
-  it "returns value unchanged" do
-    @result.should == @input
+shared_examples 'identity function' do
+  it 'returns value unchanged' do
+    expect(@result).to eq @input
   end
 end

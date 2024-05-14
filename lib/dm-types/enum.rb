@@ -46,7 +46,7 @@ module DataMapper
         case flag_map[1]
         when ::Symbol then value.to_sym
         when ::String then value.to_s
-        when ::Integer, ::Fixnum then value.to_i
+        when ::Integer then value.to_i
         else value
         end
       end

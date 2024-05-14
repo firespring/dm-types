@@ -28,14 +28,14 @@ describe DataMapper::Property::DirtyMinder, 'set!' do
   subject { object.set!(resource, value) }
 
   shared_examples 'a non hooked value' do
-    it 'should not extend value with hook' do
-      value.should_not be_kind_of(DataMapper::Property::DirtyMinder::Hooker)
+    it 'does not extend value with hook' do
+      expect(value).not_to be_kind_of(DataMapper::Property::DirtyMinder::Hooker)
     end
   end
 
   shared_examples 'a hooked value' do
-    it 'should extend value with hook' do
-      value.should be_kind_of(DataMapper::Property::DirtyMinder::Hooker)
+    it 'extends value with hook' do
+      expect(value).to be_kind_of(DataMapper::Property::DirtyMinder::Hooker)
     end
   end
 
