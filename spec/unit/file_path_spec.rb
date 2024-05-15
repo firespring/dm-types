@@ -1,5 +1,5 @@
 require_relative '../spec_helper'
-require '../fixtures/software_package'
+require_relative '../fixtures/software_package'
 
 try_spec do
   describe DataMapper::Property::FilePath do
