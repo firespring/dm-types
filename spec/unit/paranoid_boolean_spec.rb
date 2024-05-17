@@ -33,18 +33,18 @@ describe DataMapper::Property::ParanoidBoolean do
           @resource = @model.new
         end
 
-        it { should be(false) }
+        it { is_expected.to be(false) }
 
-        it 'should not delete the resource from the datastore' do
-          method(:subject).should_not change { @model.with_deleted.size }.from(0)
+        it 'does not delete the resource from the datastore' do
+          expect { method(:subject) }.not_to change { @model.with_deleted.size }.from(0)
         end
 
-        it 'should not set the paranoid column' do
-          method(:subject).should_not change { @resource.deleted }.from(false)
+        it 'does not set the paranoid column' do
+          expect { method(:subject) }.not_to change { @resource.deleted }.from(false)
         end
 
-        it 'should run the destroy hook' do
-          @resource.should_receive(:before_destroy).with(no_args)
+        it 'runs the destroy hook' do
+          expect(@resource).to receive(:before_destroy).with(no_args)
           subject
         end
       end
@@ -54,18 +54,18 @@ describe DataMapper::Property::ParanoidBoolean do
           @resource = @model.create
         end
 
-        it { should be(true) }
+        it { is_expected.to be(true) }
 
-        it 'should not delete the resource from the datastore' do
-          method(:subject).should_not change { @model.with_deleted.size }.from(1)
+        it 'does not delete the resource from the datastore' do
+          expect { method(:subject) }.not_to change { @model.with_deleted.size }.from(1)
         end
 
-        it 'should set the paranoid column' do
-          method(:subject).should change { @resource.deleted }.from(false).to(true)
+        it 'sets the paranoid column' do
+          expect { method(:subject) }.to change { @resource.deleted }.from(false).to(true)
         end
 
-        it 'should run the destroy hook' do
-          @resource.should_receive(:before_destroy).with(no_args)
+        it 'runs the destroy hook' do
+          expect(@resource).to receive(:before_destroy).with(no_args)
           subject
         end
       end
@@ -79,18 +79,18 @@ describe DataMapper::Property::ParanoidBoolean do
           @resource = @model.new
         end
 
-        it { should be(false) }
+        it { is_expected.to be(false) }
 
-        it 'should not delete the resource from the datastore' do
-          method(:subject).should_not change { @model.with_deleted.size }.from(0)
+        it 'does not delete the resource from the datastore' do
+          expect { method(:subject) }.not_to change { @model.with_deleted.size }.from(0)
         end
 
-        it 'should not set the paranoid column' do
-          method(:subject).should_not change { @resource.deleted }.from(false)
+        it 'does not set the paranoid column' do
+          expect { method(:subject) }.not_to change { @resource.deleted }.from(false)
         end
 
-        it 'should not run the destroy hook' do
-          @resource.should_not_receive(:before_destroy).with(no_args)
+        it 'does not run the destroy hook' do
+          expect(@resource).not_to receive(:before_destroy).with(no_args)
           subject
         end
       end
@@ -100,18 +100,18 @@ describe DataMapper::Property::ParanoidBoolean do
           @resource = @model.create
         end
 
-        it { should be(true) }
+        it { is_expected.to be(true) }
 
-        it 'should delete the resource from the datastore' do
-          method(:subject).should change { @model.with_deleted.size }.from(1).to(0)
+        it 'deletes the resource from the datastore' do
+          expect { method(:subject) }.to change { @model.with_deleted.size }.from(1).to(0)
         end
 
-        it 'should not set the paranoid column' do
-          method(:subject).should_not change { @resource.deleted }.from(false)
+        it 'does not set the paranoid column' do
+          expect { method(:subject) }.not_to change { @resource.deleted }.from(false)
         end
 
-        it 'should not run the destroy hook' do
-          @resource.should_not_receive(:before_destroy).with(no_args)
+        it 'does not run the destroy hook' do
+          expect(@resource).not_to receive(:before_destroy).with(no_args)
           subject
         end
       end
@@ -126,24 +126,23 @@ describe DataMapper::Property::ParanoidBoolean do
       describe 'with a block' do
         subject { @model.with_deleted { @model.all } }
 
-        it 'should scope the block to return all resources' do
-          subject.map { |resource| resource.key }.should == [ @resource.key ]
+        it 'scopes the block to return all resources' do
+          expect(subject.map(&:key)).to eq [ @resource.key ]
         end
       end
 
       describe 'without a block' do
         subject { @model.with_deleted }
 
-        it 'should return a collection scoped to return all resources' do
-          subject.map { |resource| resource.key }.should == [ @resource.key ]
+        it 'returns a collection scoped to return all resources' do
+          expect(subject.map(&:key)).to eq [ @resource.key ]
         end
       end
     end
 
     describe 'Model.inherited' do
       it 'sets @paranoid_properties' do
-        ::Blog::Review.instance_variable_get(:@paranoid_properties).should ==
-          ::Blog::Article.instance_variable_get(:@paranoid_properties)
+        expect(::Blog::Review.instance_variable_get(:@paranoid_properties)).to eq ::Blog::Article.instance_variable_get(:@paranoid_properties)
       end
     end
   end

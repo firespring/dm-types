@@ -1,9 +1,9 @@
-require 'spec_helper'
-require 'shared/identity_function_group'
+require_relative '../spec_helper'
+require_relative '../shared/identity_function_group'
 
 try_spec do
 
-  require './spec/fixtures/person'
+  require_relative '../fixtures/person'
 
   describe DataMapper::Property::Json do
     before :all do
@@ -13,21 +13,21 @@ try_spec do
     describe '.load' do
       describe 'when nil is provided' do
         it 'returns nil' do
-          @property.load(nil).should be_nil
+          expect(@property.load(nil)).to be_nil
         end
       end
 
       describe 'when Json encoded primitive string is provided' do
         it 'returns decoded value as Ruby string' do
-          @property.load(MultiJson.dump(:value => 'JSON encoded string')).should == { 'value' => 'JSON encoded string' }
+          expect(@property.load(MultiJson.dump(:value => 'JSON encoded string'))).to eq({ 'value' => 'JSON encoded string' })
         end
       end
 
       describe 'when something else is provided' do
         it 'raises ArgumentError with a meaningful message' do
-          lambda {
+          expect {
             @property.load(:sym)
-          }.should raise_error(ArgumentError, '+value+ of a property of JSON type must be nil or a String')
+          }.to raise_error(ArgumentError, '+value+ of a property of JSON type must be nil or a String')
         end
       end
     end
@@ -35,32 +35,31 @@ try_spec do
     describe '.dump' do
       describe 'when nil is provided' do
         it 'returns nil' do
-          @property.dump(nil).should be_nil
+          expect(@property.dump(nil)).to be_nil
         end
       end
 
       describe 'when Json encoded primitive string is provided' do
         it 'does not do double encoding' do
-          @property.dump('Json encoded string').should == 'Json encoded string'
+          expect(@property.dump('Json encoded string')).to eq 'Json encoded string'
         end
       end
 
       describe 'when regular Ruby string is provided' do
         it 'dumps argument to Json' do
-          @property.dump('dump me (to JSON)').should == 'dump me (to JSON)'
+          expect(@property.dump('dump me (to JSON)')).to eq 'dump me (to JSON)'
         end
       end
 
       describe 'when Ruby array is provided' do
         it 'dumps argument to Json' do
-          @property.dump([1, 2, 3]).should == '[1,2,3]'
+          expect(@property.dump([1, 2, 3])).to eq '[1,2,3]'
         end
       end
 
       describe 'when Ruby hash is provided' do
         it 'dumps argument to Json' do
-          @property.dump({ :datamapper => 'Data access layer in Ruby' }).
-            should == '{"datamapper":"Data access layer in Ruby"}'
+          expect(@property.dump({ :datamapper => 'Data access layer in Ruby' })).to eq '{"datamapper":"Data access layer in Ruby"}'
         end
       end
     end
@@ -77,7 +76,7 @@ try_spec do
           @result = @property.typecast(@input)
         end
 
-        it_should_behave_like 'identity function'
+        it_behaves_like 'identity function'
       end
 
       describe 'when given instance of an Array' do
@@ -87,7 +86,7 @@ try_spec do
           @result = @property.typecast(@input)
         end
 
-        it_should_behave_like 'identity function'
+        it_behaves_like 'identity function'
       end
 
       describe 'when given nil' do
@@ -97,7 +96,7 @@ try_spec do
           @result = @property.typecast(@input)
         end
 
-        it_should_behave_like 'identity function'
+        it_behaves_like 'identity function'
       end
 
       describe 'when given JSON encoded value' do
@@ -108,7 +107,7 @@ try_spec do
         end
 
         it 'decodes value from JSON' do
-          @result.should == { 'value' => 11 }
+          expect(@result).to eq({ 'value' => 11 })
         end
       end
 

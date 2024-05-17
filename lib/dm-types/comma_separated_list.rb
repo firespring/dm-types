@@ -8,9 +8,9 @@ module DataMapper
       def dump(value)
         if value.nil?
           nil
-        elsif value.kind_of?(::Array)
+        elsif value.is_a?(::Array)
           super(value)
-        elsif value.kind_of?(::String)
+        elsif value.is_a?(::String)
           v = []
 
           value.split(',').each do |element|
@@ -22,8 +22,7 @@ module DataMapper
         else
           raise ArgumentError, "+value+ of CommaSeparatedList must be a string, an array or nil, but given #{value.inspect}"
         end
-      end # dump
-
-    end # CommaSeparatedList
-  end # Property
-end # DataMapper
+      end
+    end
+  end
+end

@@ -1,7 +1,7 @@
-require 'spec_helper'
+require_relative '../spec_helper'
 
 try_spec do
-  require './spec/fixtures/api_user'
+  require_relative '../fixtures/api_user'
 
   describe DataMapper::TypesFixtures::APIUser do
     supported_by :all do
@@ -9,18 +9,18 @@ try_spec do
 
       let(:original_api_key) { subject.api_key }
 
-      it "should have a default value" do
-        original_api_key.should_not be_nil
+      it "has a default value" do
+        expect(original_api_key).not_to be_nil
       end
 
-      it "should preserve the default value" do
-        subject.api_key.should == original_api_key
+      it "preserves the default value" do
+        expect(subject.api_key).to eq original_api_key
       end
 
-      it "should generate unique API Keys for each resource" do
+      it "generates unique API Keys for each resource" do
         other_resource = described_class.new(:name => 'eve')
 
-        other_resource.api_key.should_not == original_api_key
+        expect(other_resource.api_key).not_to eq original_api_key
       end
     end
   end

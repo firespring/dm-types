@@ -22,7 +22,6 @@ module DataMapper
       def typecast(value)
         load(value) unless value.nil?
       end
-
     end # class URI
   end # class Property
 end # module DataMapper

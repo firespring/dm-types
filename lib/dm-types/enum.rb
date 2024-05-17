@@ -41,15 +41,15 @@ module DataMapper
 
       def typecast(value)
         return if value.nil?
+
         # Attempt to typecast using the class of the first item in the map.
         case flag_map[1]
         when ::Symbol then value.to_sym
         when ::String then value.to_s
-        when ::Fixnum then value.to_i
-        else               value
+        when ::Integer then value.to_i
+        else value
         end
       end
-
-    end # class Enum
-  end # class Property
-end # module DataMapper
+    end
+  end
+end

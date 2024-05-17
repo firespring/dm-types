@@ -1,10 +1,10 @@
 # encoding: utf-8
 
-require 'spec_helper'
+require_relative '../spec_helper'
 
 try_spec do
 
-  require './spec/fixtures/article'
+  require_relative '../fixtures/article'
 
   describe DataMapper::TypesFixtures::Article do
     supported_by :all do
@@ -17,11 +17,11 @@ try_spec do
         end
 
         it 'has slug equal to "new-datamapper-type"' do
-          @resource.slug.should == 'new-datamapper-type'
+          expect(@resource.slug).to eq 'new-datamapper-type'
         end
 
         it 'can be found by slug' do
-          DataMapper::TypesFixtures::Article.first(:slug => 'new-datamapper-type').should == @resource
+          expect(DataMapper::TypesFixtures::Article.first(:slug => 'new-datamapper-type')).to eq @resource
         end
       end
 
@@ -42,21 +42,21 @@ try_spec do
           describe "set with title '#{title}'" do
             before :all do
               @resource = DataMapper::TypesFixtures::Article.new(:title => title)
-              @resource.valid?.should be(true)
+              expect(@resource.valid?).to be(true)
             end
 
             it "has slug equal to '#{slug}'" do
-              @resource.slug.should == slug
+              expect(@resource.slug).to eq slug
             end
 
             describe "and persisted" do
               before :all do
-                @resource.save.should be(true)
+                expect(@resource.save).to be(true)
                 @resource.reload
               end
 
               it 'can be found by slug' do
-                DataMapper::TypesFixtures::Article.first(:slug => slug).should == @resource
+                expect(DataMapper::TypesFixtures::Article.first(:slug => slug)).to eq @resource
               end
             end
           end

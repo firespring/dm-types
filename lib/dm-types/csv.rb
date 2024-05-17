@@ -4,7 +4,7 @@ require 'dm-types/support/dirty_minder'
 if RUBY_VERSION >= '1.9.0'
   require 'csv'
 else
-  require 'fastercsv'  # must be ~>1.5
+  require 'fastercsv' # must be ~>1.5
   CSV = FasterCSV unless defined?(CSV)
 end
 
@@ -22,14 +22,13 @@ module DataMapper
 
       def dump(value)
         case value
-          when ::Array
-            CSV.generate { |csv| value.each { |row| csv << row } }
-          when ::String then value
+        when ::Array
+          CSV.generate { |csv| value.each { |row| csv << row } }
+        when ::String then value
         end
       end
 
       include ::DataMapper::Property::DirtyMinder
-
-    end # class Csv
-  end # class Property
-end # module DataMapper
+    end
+  end
+end

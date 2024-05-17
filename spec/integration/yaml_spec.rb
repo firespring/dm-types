@@ -1,9 +1,9 @@
-require 'spec_helper'
+require_relative '../spec_helper'
 
 try_spec do
 
-  require './spec/fixtures/person'
-  require './spec/fixtures/invention'
+  require_relative '../fixtures/person'
+  require_relative '../fixtures/invention'
 
   describe DataMapper::TypesFixtures::Person do
     supported_by :all do
@@ -18,12 +18,12 @@ try_spec do
 
         describe 'when dumped and loaded again' do
           before :all do
-            @resource.save.should be(true)
+            expect(@resource.save).to be(true)
             @resource.reload
           end
 
           it 'has nil inventions list' do
-            @resource.inventions.should be_nil
+            expect(@resource.inventions).to be_nil
           end
         end
       end
@@ -38,12 +38,12 @@ try_spec do
 
         describe 'when dumped and loaded again' do
           before :all do
-            @resource.save.should be(true)
+            expect(@resource.save).to be(true)
             @resource.reload
           end
 
           it 'loads inventions list to the state when it was dumped/persisted with keys being strings' do
-            @resource.inventions.should == [{ 'name' => 'carbon telephone transmitter' }, { 'name' => 'light bulb' }, { 'name' => 'electric grid' }]
+            expect(@resource.inventions).to eq [{ 'name' => 'carbon telephone transmitter' }, { 'name' => 'light bulb' }, { 'name' => 'electric grid' }]
           end
         end
       end
@@ -55,12 +55,12 @@ try_spec do
 
         describe 'when dumped and loaded again' do
           before :all do
-            @resource.save.should be(true)
+            expect(@resource.save).to be(true)
             @resource.reload
           end
 
           it 'has empty inventions list' do
-            @resource.inventions.should == []
+            expect(@resource.inventions).to eq []
           end
         end
       end
@@ -73,12 +73,12 @@ try_spec do
 
         describe 'when dumped and loaded again' do
           before :all do
-            @resource.save.should be(true)
+            expect(@resource.save).to be(true)
             @resource.reload
           end
 
           it 'has correct inventions' do
-            @resource.inventions.should == 'Foo and Bar'
+            expect(@resource.inventions).to eq 'Foo and Bar'
           end
         end
       end

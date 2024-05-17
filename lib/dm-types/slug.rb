@@ -23,7 +23,6 @@ module DataMapper
       def escape(string)
         string.to_url
       end
-
     end # class Slug
   end # class Property
 end # module DataMapper
