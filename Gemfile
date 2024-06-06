@@ -24,6 +24,7 @@ group :development do
   gem 'dm-validations', DM_VERSION, validation_options.dup
   gem 'rake'
   gem 'rspec'
+  gem 'simplecov'
 end
 
 group :datamapper do
