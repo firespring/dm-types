@@ -79,7 +79,7 @@ try_spec do
         end
 
         it 'raises ArgumentError with a meaningful message' do
-          expect(@operation).to raise_error(ArgumentError, '+value+ must be nil or a String')
+          expect { @operation }.to raise_error(ArgumentError, '+value+ must be nil or a String')
         end
       end
     end
