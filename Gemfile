@@ -22,6 +22,8 @@ group :development do
   validation_options[:branch] = CURRENT_BRANCH unless SOURCE == :path
 
   gem 'dm-validations', DM_VERSION, validation_options.dup
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'rake'
   gem 'rspec'
   gem 'simplecov'
