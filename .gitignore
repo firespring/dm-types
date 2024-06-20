@@ -19,7 +19,7 @@ tmtags
 .rbx
 
 ## RubyMine
-.idea/
+.idea
 
 ## PROJECT::GENERAL
 *.gem
