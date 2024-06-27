@@ -61,7 +61,7 @@ try_spec do
 
         describe 'when assigned UUID' do
           it 'raises ArgumentError' do
-            expect(@operation).to raise_error(ArgumentError, /Invalid UUID format/)
+            expect { @operation }.to raise_error(ArgumentError, /Invalid UUID format/)
           end
         end
       end
@@ -70,13 +70,13 @@ try_spec do
         before :all do
           @uuid  = ''
           @operation = lambda do
-            DataMapper::TypesFixtures::NetworkNode.new(:uuid => @uuid)
+            DataMapper::TypesFixtures::NetworkNode.new(uuid: @uuid)
           end
         end
 
         describe 'when assigned UUID' do
           it 'raises ArgumentError' do
-            expect(@operation).to raise_error(ArgumentError, /Invalid UUID format/)
+            expect { @operation }.to raise_error(ArgumentError, /Invalid UUID format/)
           end
         end
       end
