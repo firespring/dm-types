@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.files            = `git ls-files`.split("\n")
   gem.extra_rdoc_files = %w(LICENSE README.rdoc)
 
-  gem.name          = 'dm-types'
+  gem.name          = 'sbf-dm-types'
   gem.require_paths = %w(lib)
   gem.version       = DataMapper::Types::VERSION
   gem.required_ruby_version = '>= 2.7.8'
