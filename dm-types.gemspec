@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 2.7.8'
 
   gem.add_runtime_dependency('bcrypt',      '~> 3.0')
-  gem.add_runtime_dependency('dm-core',     '~> 1.3.0.beta')
+  gem.add_runtime_dependency('sbf-dm-core',     '~> 1.3.0.beta')
   gem.add_runtime_dependency('fastercsv',   '~> 1.5.4')
   gem.add_runtime_dependency 'multi_json', '~> 1.7', '>= 1.7.7'
   gem.add_runtime_dependency('safe_yaml', '~> 0.6.1')
