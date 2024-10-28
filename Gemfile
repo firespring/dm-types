@@ -14,14 +14,14 @@ options = {}
 options[SOURCE] = "#{DATAMAPPER}/dm-core#{REPO_POSTFIX}"
 options[:branch] = CURRENT_BRANCH unless SOURCE == :path
 
-gem 'dm-core', DM_VERSION, options.dup
+gem 'sbf-dm-core', DM_VERSION, options.dup
 
 group :development do
   validation_options = {}
   validation_options[SOURCE] = "#{DATAMAPPER}/dm-validations#{REPO_POSTFIX}"
   validation_options[:branch] = CURRENT_BRANCH unless SOURCE == :path
 
-  gem 'dm-validations', DM_VERSION, validation_options.dup
+  gem 'sbf-dm-validations', DM_VERSION, validation_options.dup
   gem 'pry'
   gem 'pry-byebug'
   gem 'rake'
@@ -40,21 +40,21 @@ group :datamapper do
       do_options[SOURCE] = "#{DATAMAPPER}/datamapper-do#{REPO_POSTFIX}"
     end
 
-    gem 'data_objects', DO_VERSION, do_options.dup
+    gem 'sbf-data_objects', DO_VERSION, do_options.dup
 
     do_adapters.each do |adapter|
       adapter = 'sqlite3' if adapter == 'sqlite'
 
-      gem "do_#{adapter}", DO_VERSION, do_options.dup
+      gem "sbf-do_#{adapter}", DO_VERSION, do_options.dup
     end
 
     options[SOURCE] = "#{DATAMAPPER}/dm-do-adapter#{REPO_POSTFIX}"
-    gem 'dm-do-adapter', DM_VERSION, options.dup
+    gem 'sbf-dm-do-adapter', DM_VERSION, options.dup
   end
 
   adapters.each do |adapter|
     options[SOURCE] = "#{DATAMAPPER}/dm-#{adapter}-adapter#{REPO_POSTFIX}"
-    gem "dm-#{adapter}-adapter", DM_VERSION, options.dup
+    gem "sbf-dm-#{adapter}-adapter", DM_VERSION, options.dup
   end
 
   plugins = ENV['PLUGINS'] || ENV.fetch('PLUGIN', nil)
@@ -62,6 +62,6 @@ group :datamapper do
 
   plugins.each do |plugin|
     options[SOURCE] = "#{DATAMAPPER}/#{plugin}#{REPO_POSTFIX}"
-    gem plugin, DM_VERSION, options.dup
+    gem "sbf-#{plugin}", DM_VERSION, options.dup
   end
 end
